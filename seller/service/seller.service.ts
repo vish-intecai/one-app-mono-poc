@@ -4,33 +4,16 @@ import { ShopModel } from "@models/shop.model";
 export class SellerService {
   // ✅ Create a new seller and a mapped shop
   static async createSeller(sellerData: any) {
-    const session = await SellerModel.startSession();
-    session.startTransaction();
-    try {
-      const newSeller = await SellerModel.create([sellerData], { session });
+    const newSeller = await SellerModel.create(sellerData);
 
-      // Create shop mapped to this seller
-      const newShop = await ShopModel.create(
-        [
-          {
-            name: sellerData.shop_name || `${sellerData.name}'s Shop`,
-            address: sellerData.shop_address || "",
-            contactNumber: sellerData.contactNumber || "",
-            seller: newSeller[0]._id,
-          },
-        ],
-        { session }
-      );
+    const newShop = await ShopModel.create({
+      name: sellerData.shop_name || `${sellerData.name}'s Shop`,
+      address: sellerData.shop_address || "",
+      contactNumber: sellerData.contactNumber || "",
+      seller: newSeller._id,
+    });
 
-      await session.commitTransaction();
-      session.endSession();
-
-      return { seller: newSeller[0], shop: newShop[0] };
-    } catch (error) {
-      await session.abortTransaction();
-      session.endSession();
-      throw error;
-    }
+    return { seller: newSeller, shop: newShop };
   }
 
   // ✅ Update seller info

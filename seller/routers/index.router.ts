@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import Responder from "@utils/responder.util";
+import AuthRouter from "./auth.router";
 
 const router = Router();
 
@@ -12,6 +13,8 @@ router.get("/", (req:Request, res:Response) => {
     }
 });
 
+
+router.use("/auth", AuthRouter);
 
 
 export default router;
