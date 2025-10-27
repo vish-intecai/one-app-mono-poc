@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import Responder from "@utils/responder.util";
-import { CustomerService } from "service/customer.service";
 import { generateToken } from "@utils/jwt.util";
+import { CustomerService } from "@services/customer.service";
+
 
 
 export class CustomerController {
@@ -10,14 +11,13 @@ export class CustomerController {
     const { name, email, password, phone, address } = req.body;
 
     try {
-      const existingCustomer = await CustomerService.findByEmail(email);
+      const existingCustomer:any = await CustomerService.findByEmail(email);
       if (existingCustomer) {
         return Responder.errorResponse(res, "Customer already exists with this email", 400);
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
-
-      const customer = await CustomerService.createCustomer({
+      const customer:any = await CustomerService.createCustomer({
         name,
         email,
         password: hashedPassword,
@@ -31,7 +31,7 @@ export class CustomerController {
     }
   }
 
-  // 🔐 Sign-in
+
   static async signIn(req: Request, res: Response) {
     const { email, password } = req.body;
 

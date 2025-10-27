@@ -1,7 +1,7 @@
 import { verifyToken } from "@utils/jwt.util";
 import Responder from "@utils/responder.util";
 import { NextFunction, Request, Response } from "express";
-import { CustomerService } from "service/customer.service";
+import { CustomerService } from "@services/customer.service";
 
 const bearerTokenMiddleware =async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'] || req.headers['Authorization'];
@@ -21,12 +21,13 @@ const bearerTokenMiddleware =async (req: Request, res: Response, next: NextFunct
     if (!decoded) {
         return Responder.errorResponse(res, "Invalid token", 401);
     }
-    req.headers['id'] = decoded.id;
+    console.log(decoded)
 
     const customer:any = await CustomerService.findById(decoded.id as string);
     if (!customer) {
         return Responder.errorResponse(res, "Customer not found", 404);
     }
+    req.headers['id'] = decoded.id;
     next();
 };
 

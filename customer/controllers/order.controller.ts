@@ -5,6 +5,7 @@ import { Request, Response } from "express";
 export class OrderController {
     static async createOrder(req: Request, res: Response) {
         const customerId = req.headers['id'] as string;
+        console.log(customerId)
         try {
             const itemDetails:any[] =[];
             const order = await OrderService.createOrder({
