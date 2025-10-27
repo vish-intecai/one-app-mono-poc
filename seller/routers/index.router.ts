@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/", (req:Request, res:Response) => {
     try {
-        Responder.successResponse(res, "Hello World");
+        Responder.successResponse(res, "Hello World, Running Seller");
     } catch (error:any) {
         console.log(error);
         Responder.errorResponse(res, error);
