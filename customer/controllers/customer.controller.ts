@@ -43,7 +43,7 @@ export class CustomerController {
       if (!isMatch) return Responder.errorResponse(res, "Invalid credentials", 401);
 
       const token = generateToken({
-        customerId: customer._id,
+        id: customer._id,
       });
 
       return Responder.successResponse(res, {

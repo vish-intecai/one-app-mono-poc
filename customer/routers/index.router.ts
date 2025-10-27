@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import Responder from "@utils/responder.util";
-import CustomerRouter from "@routers/order.router";
+import AuthRouter from "@routers/auth.router";
 import OrderRouter from "@routers/order.router";
 
 const router = Router();
@@ -14,7 +14,7 @@ router.get("/", (req:Request, res:Response) => {
     }
 });
 
-router.use("/auth", CustomerRouter);
+router.use("/auth", AuthRouter);
 router.use("/order", OrderRouter);
 
 export default router;
