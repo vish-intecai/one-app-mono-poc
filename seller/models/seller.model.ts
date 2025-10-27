@@ -8,4 +8,4 @@ export const SellerSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-export const DeliveryAgentModel = mongoose.model("Seller", SellerSchema) || mongoose.models
+export const SellerModel = mongoose.model("Seller", SellerSchema) || mongoose.models
