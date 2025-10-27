@@ -15,5 +15,14 @@ export class DeliveryPartnerService {
         const deliveryPartner = await DeliveryAgentModel.findOne({ email });
         return deliveryPartner;
     }
-
+    static async getDeliveryPartnerById(data: any) {
+        const { id } = data;
+        console.log(id);
+        const deliveryPartner = await DeliveryAgentModel.findById(data.id);
+     
+        if (!deliveryPartner) {
+            throw new Error("Delivery partner not found");
+        }
+        return deliveryPartner;
+    }
 }
