@@ -8,6 +8,7 @@ import errorHandlerMiddleware from "@middlewares/error-handler.middleware";
 import path from "path";
 import fs from "fs";
 import requestLogger from "@utils/logger.util";
+import { connectDB } from "@config/db.mongodb";
 
 const app = express();
 
@@ -25,10 +26,10 @@ app.use(express.json({
 app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 
 app.use('/api', indexRouter);
-
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 app.listen(configuration.port, async () => {
+  await connectDB();
   console.log(`Server is running on port ${configuration.port}`);
 });
