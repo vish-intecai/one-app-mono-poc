@@ -5,7 +5,8 @@ const configuration:any = {
     secret: process.env.JWT_SECRET || "secret",
     expiresIn: process.env.JWT_EXPIRES_IN || "1h",
     algorithm: "HS256"
-  }
+  },
+  rabbitmqUrl: process.env.RABBITMQ_URL || "amqp://localhost",
 };
 
 export default configuration;

@@ -17,6 +17,7 @@
       "@models/*": ["models/*"],
       "@config/*": ["config/*"],
       "@services/*": ["services/*"],
+      "@handlers/*": ["rabbitmq/handlers/*"],
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

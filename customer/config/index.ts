@@ -6,7 +6,7 @@ const configuration:any = {
     expiresIn: process.env.JWT_EXPIRES_IN || "1h",
     algorithm: "HS256"
   },
-  rabbitmqUrl: process.env.RABBITMQ_URL || "amqp://localhost:5672",
+  rabbitmqUrl: process.env.RABBITMQ_URL || "amqp://localhost",
 };
 
 export default configuration;
