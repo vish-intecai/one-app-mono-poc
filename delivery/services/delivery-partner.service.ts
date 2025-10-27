@@ -11,5 +11,9 @@ export class DeliveryPartnerService {
         const updatedDeliveryPartner = await DeliveryAgentModel.findByIdAndUpdate(id, deliveryPartner, { new: true });
         return updatedDeliveryPartner;
     }
+    static async getDeliveryPartnerByEmail(email: string) {
+        const deliveryPartner = await DeliveryAgentModel.findOne({ email });
+        return deliveryPartner;
+    }
 
 }

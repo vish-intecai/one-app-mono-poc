@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import Responder from "@utils/responder.util";
 import { DeliveryPartnerService } from "@services/delivery-partner.service";
+import { generateToken } from "@utils/jwt.util";
 
 
 export class DeliveryPartnerController {
@@ -17,8 +18,20 @@ export class DeliveryPartnerController {
     static async signIn(req: Request, res: Response) {
         const { email, password } = req.body;
         try {
-            const deliveryPartner = await DeliveryPartnerService.createDeliveryPartner({ email, password });
-            return Responder.successResponse(res, {email: email});
+            const deliveryPartner = await DeliveryPartnerService.getDeliveryPartnerByEmail(email);
+            if (!deliveryPartner) {
+                throw new Error("Delivery partner not found");
+            }
+            const isPasswordValid = await deliveryPartner.comparePassword(password);
+            if (!isPasswordValid) {
+                throw new Error("Invalid password");
+            }
+
+            const token = generateToken({ id: deliveryPartner._id });
+            return Responder.successResponse(res, {
+                email: email,
+                token: token
+            });
         } catch (error:any) {
             return Responder.errorResponse(res, error.message);
         }

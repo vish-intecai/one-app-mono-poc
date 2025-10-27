@@ -3,7 +3,7 @@ import configuration from "@config/index";
 
 const jwtOptions = {
   algorithm: configuration.jwt.algorithm,
-  expiresIn: configuration.jwt.expiresIn
+  expiresIn: configuration.jwt.expiresIn,
 };
 
 const jwtSecret = configuration.jwt.secret;
