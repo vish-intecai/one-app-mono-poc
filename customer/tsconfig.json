@@ -8,7 +8,7 @@
     "outDir": "./build",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["@/*"],
+      "@/*": ["*"],
       "@docs/*": ["docs/*"],
       "@utils/*": ["utils/*"],
       "@controllers/*": ["controllers/*"],
