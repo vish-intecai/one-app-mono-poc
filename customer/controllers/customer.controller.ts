@@ -6,7 +6,6 @@ import { generateToken } from "@utils/jwt.util";
 
 
 export class CustomerController {
-  // 🧾 Signup
   static async signUp(req: Request, res: Response) {
     const { name, email, password, phone, address } = req.body;
 

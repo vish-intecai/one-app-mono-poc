@@ -19,4 +19,11 @@ export class CustomerService {
   static async findByEmail(email: string) {
     return await CustomerModel.findOne({ email });
   }
+  static async findById(id: string) {
+    const customer = await CustomerModel.findById(id);
+    if (!customer) {
+      throw new Error("Customer not found");
+    }
+    return customer;
+  }
 }

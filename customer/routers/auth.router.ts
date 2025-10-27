@@ -1,12 +1,11 @@
 import express from "express";
 import { CustomerController } from "@controllers/customer.controller";
 
-const CustomerRouter = express.Router();
+const router = express.Router();
 
-// 🧾 Signup
-CustomerRouter.post("/signup", CustomerController.signUp);
 
-// 🔐 Signin
-CustomerRouter.post("/signin", CustomerController.signIn);
+router.post("/signup", CustomerController.signUp);
+router.post("/signin", CustomerController.signIn);
 
-export default CustomerRouter;
+
+export default router;
