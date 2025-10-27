@@ -9,9 +9,9 @@ import path from "path";
 import fs from "fs";
 import requestLogger from "@utils/logger.util";
 import { connectDB } from "@config/db.mongodb";
+import { OrderConsumer } from "./rabbitmq/consumers/order.consumer";
 import { createServer } from "http";
-import { initSockets } from "./socket/index";
-
+import { initSockets } from "./socket";
 
 const app = express();
 const httpServer = createServer(app);
@@ -35,8 +35,8 @@ app.use(errorHandlerMiddleware);
 
 initSockets(httpServer);
 
-
-app.listen(configuration.port, async () => {
+httpServer.listen(configuration.port, async () => {
   await connectDB();
+  OrderConsumer.startConsuming();
   console.log(`Server is running on port ${configuration.port}`);
 });

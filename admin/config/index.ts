@@ -3,7 +3,7 @@ const configuration:any = {
   mongodbUrl: process.env.MONGODB_URL || "mongodb://localhost:27017/",
   jwt: {
     secret: process.env.JWT_SECRET || "secret",
-    expiresIn: process.env.JWT_EXPIRES_IN || "1h",
+    expiresIn: process.env.JWT_EXPIRES_IN || "3d",
     algorithm: "HS256"
   }
 };

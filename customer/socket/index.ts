@@ -16,6 +16,7 @@ export const initSockets = (httpServer: any) => {
     console.log("Socket connected:", socket.id);
 
     orderSocketHandler(io, socket);
+    
     socket.on("disconnect", () => {
       console.log("Socket disconnected:", socket.id);
     });

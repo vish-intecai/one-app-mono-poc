@@ -8,7 +8,7 @@ export class OrderConsumer {
       
       await channel.assertQueue('order.created', { durable: true });
       console.log('Order consumer started consuming from order.created queue');
-      channel.consume('order.created', async (msg: any) => {
+      channel.consume('order.seller.created', async (msg: any) => {
         if (msg) {
           try {
             const order = JSON.parse(msg.content.toString());

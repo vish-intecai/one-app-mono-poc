@@ -2,6 +2,7 @@ import { FoodService } from "@services/food.service";
 import { OrderService } from "@services/order.service";
 import Responder from "@utils/responder.util";
 import { Request, Response } from "express";
+import { OrderPublisher } from "rabbitmq/publishers/order.publisher";
 
 export class OrderController {
   static async createOrder(req: Request, res: Response) {
@@ -25,12 +26,13 @@ export class OrderController {
         );
         const quantity = reqItem?.quantity || 0;
         const price = food.price * quantity;
-
+       
         return {
           itemId: food._id,
           itemName: food.name,
           itemPrice: food.price,
           itemType: "Food",
+          shop: food.shop,
           quantity,
           price
         };
@@ -43,6 +45,13 @@ export class OrderController {
         items: mappedItems,
         totalAmount
       });
+      
+      OrderPublisher.publishOrder({
+        customerId,
+        items: mappedItems,
+        totalAmount
+      });
+      
 
       return Responder.successResponse(res, order);
     } catch (error: any) {
