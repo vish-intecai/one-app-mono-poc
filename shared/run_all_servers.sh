@@ -1,0 +1,1 @@
+cd .. && cd admin && npm run dev && cd .. && cd customer && npm run dev && cd .. && cd delivery && npm run dev && cd .. && cd seller && npm run dev && cd ..

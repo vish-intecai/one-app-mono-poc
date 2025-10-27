@@ -1,0 +1,1 @@
+cd .. && cd admin && npm i && cd .. && cd customer && npm i && cd .. && cd delivery && npm i && cd .. && cd seller && npm i && cd ..
