@@ -9,8 +9,12 @@ import path from "path";
 import fs from "fs";
 import requestLogger from "@utils/logger.util";
 import { connectDB } from "@config/db.mongodb";
+import { createServer } from "http";
+import { initSockets } from "./socket/index";
+
 
 const app = express();
+const httpServer = createServer(app);
 
 const logsPath = path.join(__dirname, "logs");
 
@@ -28,6 +32,9 @@ app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 app.use('/api', indexRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+
+initSockets(httpServer);
+
 
 app.listen(configuration.port, async () => {
   await connectDB();
