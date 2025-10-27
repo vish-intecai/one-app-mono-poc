@@ -4,11 +4,8 @@ export const DeliveryAgentSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    current_location:{
-        latitude: { type: Number, required: true },
-        longitude: { type: Number, required: true },
-    },
     is_available: { type: Boolean, default: true },
+    roleId: { type: mongoose.Schema.Types.ObjectId, ref: "Role", required: true },
 },{
     timestamps: true,
 });
