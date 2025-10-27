@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Responder from "@utils/responder.util";
-import { FoodSubCategoryService } from "service/food-subcategory.service";
+import { FoodSubCategoryService } from "@services/food-subcategory.service";
 
 export class FoodSubCategoryController {
   static async create(req: Request, res: Response) {

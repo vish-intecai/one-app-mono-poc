@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Responder from "@utils/responder.util";
-import { FoodService } from "service/food.service";
+import { FoodService } from "@services/food.service";
 
 export class FoodController {
   static async create(req: Request, res: Response) {

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Responder from "@utils/responder.util";
 import bcrypt from "bcryptjs";
 import { generateToken } from "@utils/jwt.util";
-import { SellerService } from "service/seller.service";
+import { SellerService } from "@services/seller.service";
 
 export class SellerController {
   // 🧾 Seller Signup (with Shop creation)
