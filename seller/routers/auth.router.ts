@@ -4,9 +4,9 @@ import { SellerController } from "@controllers/seller.controller";
 const router = express.Router();
 
 // 🧾 Seller Signup (creates seller + shop)
-router.post("/signup", SellerController.signUp);
+router.post("/sign-up", SellerController.signUp);
 
 // 🔐 Seller Signin (returns JWT)
-router.post("/signin", SellerController.signIn);
+router.post("/sign-in", SellerController.signIn);
 
 export default router;

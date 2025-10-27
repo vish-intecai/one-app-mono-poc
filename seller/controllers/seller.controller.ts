@@ -45,7 +45,7 @@ export class SellerController {
 
       // Generate JWT token with seller details
       const token = generateToken({
-        sellerId: seller._id,
+        id: seller._id,
       });
 
       return Responder.successResponse(res, {
