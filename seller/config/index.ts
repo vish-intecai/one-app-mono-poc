@@ -7,6 +7,7 @@ const configuration:any = {
     algorithm: "HS256"
   },
   rabbitmqUrl: process.env.RABBITMQ_URL || "amqp://localhost",
+  socketUrl: process.env.SOCKET_URL || "http://localhost:4007",
 };
 
 export default configuration;

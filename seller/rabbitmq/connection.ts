@@ -1,15 +1,19 @@
-// customer/rabbitmq/connection.ts
+
+import configuration from '@/config';
 import amqp from 'amqplib';
 
 export class RabbitMQConnection {
   private static connection: any= null;
   private static channel:any= null;
-
+  
   static async connect() {
-    if (!this.connection) {
-      this.connection = await amqp.connect(process.env.RABBITMQ_URL || 'amqp://localhost:5672');
+    try {
+      this.connection = await amqp.connect(configuration.rabbitmqUrl);
       this.channel = await this.connection.createChannel();
+      return this.channel;
+    } catch (error) {
+      console.error('Error connecting to RabbitMQ:', error);
+      throw error;
     }
-    return this.channel!;
   }
 }
