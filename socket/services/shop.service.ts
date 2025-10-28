@@ -12,9 +12,10 @@ export class ShopService {
   }
 
   static async getShopById(id: string) {
-    const shop = await ShopModel.findOne( {
-      _id: id,
-    }).populate("seller", "name email");
+    if (!id) {
+      throw new Error("Shop ID is required");
+    }
+    const shop = await ShopModel.findById(id).populate("seller", "name email");
     return shop;
   }
 

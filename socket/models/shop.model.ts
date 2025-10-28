@@ -10,3 +10,4 @@ export const ShopSchema = new mongoose.Schema({
 
 export const ShopModel =
   mongoose.models.Shop || mongoose.model("Shop", ShopSchema);
+  
