@@ -8,7 +8,8 @@ export class OrderConsumer {
       const channelName = 'order.seller.created';
       
       await channel.assertQueue(channelName, { durable: true });
-      console.log(`Order consumer started consuming from ${channelName} queue`);
+      console.log(`Customer Order started consuming from ${channelName} queue`);
+      
       channel.consume(channelName, async (msg: any) => {
         if (msg) {
           try {
@@ -24,7 +25,7 @@ export class OrderConsumer {
         }
       }, { noAck: false });
 
-      console.log(' Seller service consuming from queues');
+      console.log('Seller service started consuming from queues');
     } catch (error) {
       console.error(' Error starting seller consumers:', error);
     }
